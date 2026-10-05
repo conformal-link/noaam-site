@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noaam</title>
+<meta name="description" content="Noaam: Not Another Agent Manager. Your tools are fine. Noaam just keeps track of them: the sessions, editors, terminals and pages that belong to each repo and worktree. Free for macOS.">
+<meta property="og:title" content="Noaam: Not Another Agent Manager">
+<meta property="og:description" content="Tired of agent managers? Me too. Noaam keeps the agents, editors and pages you already use filed by repo and worktree. Free for macOS.">
+<meta property="og:image" content="https://noaam.dev/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; background: var(--bg); color: var(--muted); }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: var(--w); margin: 0 auto; padding: 0 16px 96px; position: relative; }
+nav.top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; }
+.brand img { width: 26px; height: 26px; }
+.links { display: flex; gap: 22px; align-items: center; font-size: 14px; }
+.links a { text-decoration: none; color: var(--muted); }
+.links a:hover { color: var(--ink); }
+.links .pill { color: var(--ink); border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; }
+h1, h2 { color: var(--ink); margin: 0; }
+.metoo { display: block; color: var(--accent); }
+b { color: var(--ink); font-weight: inherit; }
+.refrain { color: var(--accent); white-space: nowrap; }
+.cta { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; margin-top: 32px; }
+.button { background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600; padding: 12px 22px; border-radius: 10px; font-size: 15px; }
+.note { font-size: 13px; color: var(--faint); }
+.frame { margin: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); box-shadow: 0 30px 80px -30px rgba(0,0,0,.7); }
+.chrome { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--faint); }
+.chrome i { width: 11px; height: 11px; border-radius: 50%; background: var(--line); }
+.chrome span { margin-left: auto; margin-right: auto; transform: translateX(-24px); }
+section p { margin: 0 0 18px; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0; margin: 0; }
+dt, dd { margin: 0; padding: 12px 0; border-top: 1px solid var(--line); }
+dt { color: var(--ink); padding-right: 28px; }
+ol { padding-left: 20px; margin: 0 0 18px; } li { margin: 6px 0; }
+code { font-family: var(--mono); font-size: .88em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--ink); }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--faint); }
+@media (max-width: 600px) { .links a:not(.pill) { display: none; } dl { grid-template-columns: 1fr; } dd { border-top: 0; padding-top: 0; } }
+
+:root { --bg:#141210; --panel:#1a1815; --ink:#eeebe3; --muted:#a8a49b; --faint:#6f6b63; --line:#2a2722; --accent:#ff7a59; --on-accent:#140c08; --w:920px; --mono:"Geist Mono", monospace; }
+body { font: 16px/1.7 Geist, system-ui, sans-serif; letter-spacing: -0.005em; }
+body::after { content:""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: .045; pointer-events: none; }
+.brand span, .links, .note, .kicker, .chrome, footer, dt, .button { font-family: var(--mono); }
+.brand span { font-weight: 500; font-size: 14px; }
+.links { font-size: 13px; }
+.links .pill { border-radius: 6px; }
+.hero { padding: 56px 0 64px; }
+.kicker { font-size: 12px; color: var(--faint); margin: 0 0 22px; }
+.kicker::before { content: "// "; color: var(--accent); }
+h1 { font-weight: 500; font-size: 80px; line-height: 1; letter-spacing: -0.045em; max-width: 820px; }
+.lede { font-size: 19px; max-width: 600px; margin: 32px 0 0; }
+.refrain { font-family: var(--mono); font-size: .9em; }
+.refrain::before { content: "> "; }
+.button { border-radius: 6px; font-weight: 500; font-size: 14px; }
+.button::after { content: "  ↓"; }
+.frame { border-radius: 8px; }
+section { display: grid; grid-template-columns: 220px 1fr; column-gap: 40px; padding-top: 96px; }
+section > .kicker { grid-column: 1; grid-row: 1 / span 20; margin-top: 10px; }
+section > *:not(.kicker) { grid-column: 2; }
+h2 { font-weight: 500; font-size: 32px; letter-spacing: -0.03em; margin-bottom: 18px; }
+@media (max-width: 760px) { section { display: block; } h1 { font-size: 50px; } .hero { padding-top: 32px; } }
+
+.features { margin: 8px 0 0; }
+.feature { padding: 34px 0 40px; border-top: 1px solid var(--line); }
+.feature .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+.feature h3 { color: var(--ink); font-weight: 500; font-size: 24px; line-height: 1.25; letter-spacing: -0.025em; margin: 8px 0 10px; }
+.feature p { margin: 0 0 22px; max-width: 560px; }
+.panel { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
+.shot-todo { border: 1px dashed var(--line); border-radius: 10px; aspect-ratio: 16 / 9; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; color: var(--faint); text-align: center; padding: 16px; }
+/* sidebar mock */
+.side { font-size: 13px; padding: 10px 0; font-family: Geist, system-ui, sans-serif; }
+.row { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; column-gap: 8px; padding: 5px 14px; color: var(--ink); white-space: nowrap; }
+.row .t { overflow: hidden; text-overflow: ellipsis; }
+.row .t small { color: var(--faint); font-size: 12px; margin-left: 6px; }
+.row .when { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.row.l1 { padding-left: 32px; } .row.l2 { padding-left: 50px; }
+.row.sel { background: rgba(255,255,255,.05); }
+.row.folder { color: var(--muted); }
+.ico { width: 14px; height: 14px; display: grid; place-items: center; color: var(--faint); font-size: 11px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; justify-self: center; }
+.dot.work { background: #4f9dff; box-shadow: 0 0 0 3px rgba(79,157,255,.18); }
+.dot.need { background: #ff9f0a; width: 13px; height: 13px; position: relative; }
+.dot.need::after { content: "?"; position: absolute; inset: 0; font: 600 9px/13px var(--mono); color: #241400; text-align: center; }
+.dot.read { background: #ff9f0a; }
+.dot.idle { background: #34c759; }
+.dot.dead { background: #ff453a; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 12px 14px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.also { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 4px 0 0; padding: 0; list-style: none; }
+.also li { margin: 0; padding: 14px 0; border-top: 1px solid var(--line); }
+.also b { display: block; margin-bottom: 2px; }
+.also kbd { font-family: var(--mono); font-size: 12px; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.tools li { margin: 0; font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px solid var(--line); background: var(--panel); padding: 5px 11px; border-radius: 6px; }
+.tools li.yours { color: var(--faint); border-style: dashed; background: none; }
+blockquote.pull { margin: 0; padding: 0; }
+blockquote.pull p { font-size: 34px; line-height: 1.2; letter-spacing: -0.03em; font-weight: 500; color: var(--ink); margin: 0 0 18px; }
+blockquote.pull p span { color: var(--accent); }
+blockquote.pull cite { font-style: normal; font-family: var(--mono); font-size: 13px; color: var(--faint); }
+.final h2 { font-size: 44px; }
+.final .cta { margin-top: 24px; }
+.final .note a { color: var(--muted); }
+@media (max-width: 760px) { blockquote.pull p { font-size: 26px; } .final h2 { font-size: 34px; } .also { grid-template-columns: 1fr; } .row .t small { display: none; } }
+
+.frame.shot { border: 0; background: none; border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 40px 100px -30px rgba(0,0,0,.85); }
+.frame.shot img { width: 100%; height: auto; border-radius: 12px; }
+figure.crop { margin: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 24px 60px -30px rgba(0,0,0,.8); }
+figure.crop img { width: 100%; height: auto; }
+.feature.split { display: grid; grid-template-columns: 1fr 260px; grid-template-rows: auto auto 1fr; column-gap: 36px; align-items: start; }
+.feature.split .side-shot { grid-column: 2; grid-row: 1 / span 3; max-height: 560px; }
+.feature.split .side-shot img { object-fit: cover; object-position: top; max-height: 560px; }
+@media (max-width: 760px) { .feature.split { display: block; } .feature.split .side-shot { max-height: 420px; } .feature.split .side-shot img { max-height: 420px; } }
+
+.switcher { display: flex; justify-content: center; gap: 18px; padding: 26px 22px 20px; border-radius: 22px; background: rgba(255,255,255,.04); box-shadow: 0 0 0 1px var(--line), 0 24px 60px -30px rgba(0,0,0,.8); width: fit-content; max-width: 100%; margin: 4px 0 0; }
+.switcher .app { position: relative; display: grid; justify-items: center; gap: 8px; padding: 10px; border-radius: 16px; }
+.switcher .app.on { background: rgba(255,255,255,.08); }
+.switcher img, .switcher i { width: 64px; height: 64px; border-radius: 14px; display: block; }
+.switcher i { background: linear-gradient(160deg, #2a2722, #1d1b18); box-shadow: inset 0 0 0 1px var(--line); }
+.switcher .ghost { opacity: .45; }
+.switcher small { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.switcher .badge { position: absolute; top: 52px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 10px; color: var(--on-accent); background: var(--accent); padding: 1px 6px; border-radius: 5px; white-space: nowrap; }
+@media (max-width: 560px) { .switcher .ghost { display: none; } }
+
+.feature.first { border-top: 0; padding-top: 4px; }
+section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid var(--line); }
+.qa .q { padding: 0 0 40px; }
+.qa .q + .q { padding-top: 32px; border-top: 1px solid var(--line); }
+.qa h3 { color: var(--ink); font-weight: 500; font-size: 22px; letter-spacing: -0.02em; margin: 0 0 12px; }
+.qa p a, .final .note a { color: var(--ink); text-decoration-color: var(--faint); text-underline-offset: 3px; }
+.qa blockquote.pull { margin-top: 4px; }
+.footnote { font-family: var(--mono); font-size: 12px; color: var(--faint); margin: 16px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top">
+  <a class="brand" href="#"><img src="assets/icon-256.png" alt=""><span>Noaam</span></a>
+  <div class="links">
+    <a href="docs/">Guide</a>
+    <a href="https://github.com/sponsors/conformal-link">Sponsor</a>
+    <a class="pill" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="kicker">Not Another Agent Manager</p>
+  <h1>Tired of agent managers?<span class="metoo">Me too.</span></h1>
+  <p class="lede">Most of them are barking up the wrong layer. Don't reinvent my tools. No more chat wrappers. This is Noaam.</p>
+  <div class="cta">
+    <a class="button" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download for macOS</a>
+    <span class="note">Free · macOS 14+ · Apple silicon</span>
+  </div>
+</header>
+
+<figure class="frame shot">
+  <img src="assets/shots/hero.webp" width="2400" height="1572" alt="Noaam with a Space tiled: Claude Code adding a light theme to Tidepool, the live app on localhost, and VS Code on the stylesheet. The sidebar shows agents working, finished and waiting across repos and worktrees.">
+</figure>
+
+<section>
+  <p class="kicker">What it does</p>
+  <div class="features">
+
+    <div class="feature first">
+      <span class="num">01</span>
+      <h3>You never hunt for the session that needs you.</h3>
+      <p>Every tool gets one dot: working, waiting on you, finished while you were elsewhere, or crashed.</p>
+      <div class="panel side" aria-label="Sidebar with status dots">
+        <div class="row folder"><span class="ico"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 2 2 5l6 3 6-3-6-3Z"/><path d="m2 8 6 3 6-3"/><path d="m2 11 6 3 6-3"/></svg></span><span class="t">tidepool</span><span></span></div>
+        <div class="row l1"><span class='dot work'></span><span class="t">Offline cache for forecasts <small>Claude Code</small></span><span class="when">now</span></div>
+        <div class="row l1 sel"><span class='dot need'></span><span class="t">Fix tide curve on Safari <small>Codex · wants to run npm test</small></span><span class="when">1m</span></div>
+        <div class="row l1"><span class='dot read'></span><span class="t">Spot cards: add swell direction <small>Claude Code</small></span><span class="when">4m</span></div>
+        <div class="row folder"><span class="ico"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 2 2 5l6 3 6-3-6-3Z"/><path d="m2 8 6 3 6-3"/><path d="m2 11 6 3 6-3"/></svg></span><span class="t">ledgerline</span><span></span></div>
+        <div class="row l1"><span class='dot idle'></span><span class="t">Multi-currency balance report <small>Claude Code</small></span><span class="when">12m</span></div>
+        <div class="row l1"><span class='dot dead'></span><span class="t">Bench the journal parser <small>opencode · exited 137</small></span><span class="when">38m</span></div>
+        <div class="legend"><span><i class="dot work"></i>working</span><span><i class="dot need"></i>needs you</span><span><i class="dot read"></i>to read</span><span><i class="dot idle"></i>idle</span><span><i class="dot dead"></i>crashed</span></div>
+      </div>
+    </div>
+
+    <div class="feature split">
+      <span class="num">02</span>
+      <h3>Everything filed where it belongs.</h3>
+      <p>Sessions from your coding agent, editor windows, websites and terminals land under the repo or worktree they belong to. Nothing to import. Right-click any folder to branch a new worktree there.</p>
+      <figure class="crop side-shot"><img src="assets/shots/sidebar.webp" width="512" height="1421" alt="The real sidebar: repos, worktrees and a Space, each holding its agent sessions, editor and page." loading="lazy"></figure>
+    </div>
+
+    <div class="feature">
+      <span class="num">03</span>
+      <h3>One task, one Space.</h3>
+      <p>Drag an item onto the edge of a pane to split it. The agent, the page it's building and your editor sit side by side, and the layout is saved.</p>
+      <figure class="crop"><img src="assets/shots/tiles.webp" width="1800" height="1410" alt="A tiled Space: the agent, the page it is building and the editor, side by side." loading="lazy"></figure>
+    </div>
+
+    <div class="feature">
+      <span class="num">04</span>
+      <h3>Your real apps. Not another half-baked TUI.</h3>
+      <p>Any item opens in its own app with one click. Or dock that app's window next to the sidebar, or into a tile of a Space, and it moves with Noaam.</p>
+      <figure class="crop"><img src="assets/shots/docked-tile.webp" width="1800" height="1179" alt="A Space with the Tidepool page and VS Code embedded, and a real Ghostty window running Claude Code docked as the right-hand tile." loading="lazy"></figure>
+    </div>
+
+    <div class="feature">
+      <span class="num">05</span>
+      <h3>Work stays at work.</h3>
+      <p>Profiles keep work and side projects apart: their own folders, tools and web sign-ins. Each runs as its own Noaam, side by side in ⌘-Tab.</p>
+      <div class="switcher" aria-label="Two Noaam profiles side by side in the app switcher">
+        <div class="app"><img src="assets/icon-256.png" alt=""><span class="badge">work</span><small>Noaam</small></div>
+        <div class="app on"><img src="assets/icon-256.png" alt=""><span class="badge">personal</span><small>Noaam</small></div>
+        <div class="app ghost"><i></i><small>Ghostty</small></div>
+        <div class="app ghost"><i></i><small>VS Code</small></div>
+        <div class="app ghost"><i></i><small>Arc</small></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <p class="kicker">And also</p>
+  <h2>The small stuff</h2>
+  <ul class="also">
+    <li><b>Start anything from anywhere</b><kbd>⌃⌘T</kbd>, pick the tool and the folder, go. An agent gets your text as its first message.</li>
+    <li><b>Find anything</b><kbd>⌃⌘F</kbd> searches the sidebar, fzf-style.</li>
+    <li><b>Back and forward</b><kbd>⌃⌘[</kbd> and <kbd>⌃⌘]</kbd> step through everything you opened.</li>
+    <li><b>Keys that never collide*</b>Noaam's commands live on ⌃⌘. Plain ⌘ keys stay with your tools.</li>
+    <li><b>Scrollback survives</b>Crash, quit or reboot, and a terminal's old output is still there.</li>
+    <li><b>Light on memory</b>Hidden items unload when quiet and resume when you come back.</li>
+    <li><b>Settle, never delete</b>Hide what's done. Your sessions, worktrees and files stay put.</li>
+    <li><b>No lock-in</b>Everything Noaam knows is small JSON files in <code>~/.config/noaam</code>. Delete Noaam and your sessions, worktrees and files are exactly where they were.</li>
+  </ul>
+  <p class="footnote">* Except ⌘Q, ⌘W, ⌘, (Settings), ⌘H and ⌘M, which always go to Noaam, and any ⌃⌘ shortcut a tool of yours also uses.</p>
+</section>
+
+<section>
+  <p class="kicker">Works with</p>
+  <h2>Whatever you already run</h2>
+  <ul class="tools">
+    <li>Claude Code</li><li>Codex</li><li>opencode</li><li>Pi</li><li>VS Code</li><li>Neovim</li><li>Zed</li><li>Ghostty</li><li>Zen</li><li>Chrome</li><li>Safari</li><li class="yours">+ anything you add</li>
+  </ul>
+</section>
+
+<section class="final">
+  <p class="kicker">Get it</p>
+  <h2>Keep your tools. Lose the mess.</h2>
+  <div class="cta">
+    <a class="button" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download for macOS</a>
+    <span class="note">Free · macOS 14+ · Apple silicon</span>
+  </div>
+</section>
+
+<section class="questions">
+  <p class="kicker">Questions</p>
+  <div class="qa">
+
+    <div class="q">
+      <h3>Why build another agent manager?</h3>
+      <p><b>Half of them want to replace my tools.</b> A new terminal. A new multiplexer. An editor with a chat box glued to the side. No. I'm not learning your AI slop terminal multiplexer. When I read or edit code, I use VS Code/Neovim/Zed/&lt;insert your tool&gt;. When I talk to a coding agent, I use Claude Code/Codex/Pi/&lt;insert your tool&gt;. <span class="refrain">My tools are fine.</span></p>
+      <p><b>The other half wrap my agents.</b> Yet another web UI that reinvents the chat window and shells out to my coding CLI behind the curtain. Now every new feature reaches me whenever some solo vibe coder gets around to supporting it. No thanks. I want the real thing, today's version. <span class="refrain">My tools are fine.</span></p>
+    </div>
+
+    <div class="q">
+      <h3>So what's actually broken?</h3>
+      <p>Keeping track of it all. I work in a repo, a worktree, some random folder. By lunch that folder has eleven agent sessions on it, three browser tabs and an editor window, and nothing on my machine knows they belong together. Which session is waiting on me? Which tab was for which task? Where the heck was I yesterday?</p>
+      <p><b>Noaam is only that layer.</b></p>
+    </div>
+
+    <div class="q">
+      <h3>Isn't a coding agent all you need?</h3>
+      <blockquote class="pull">
+        <p>AI has the experience of an intern on day one. <span>You're still responsible for knowing what you're building.</span></p>
+        <cite>That's why your editor sits next to your agents, not behind a chat box.</cite>
+      </blockquote>
+    </div>
+
+    <div class="q">
+      <h3>Does it send my code anywhere?</h3>
+      <p>No. No account, no server, no telemetry. Your agents talk to whoever they already talk to.</p>
+    </div>
+
+    <div class="q">
+      <h3>Does it run my agents for me?</h3>
+      <p>No. They run exactly where they always do, on your Mac, with your subscription. Noaam just keeps track.</p>
+    </div>
+
+    <div class="q">
+      <h3>Do I need an API key?</h3>
+      <p>No. Noaam doesn't call any model.</p>
+    </div>
+
+    <div class="q">
+      <h3>Linux? Windows?</h3>
+      <p>Not yet. Maybe if enough people <a href="https://github.com/sponsors/conformal-link">buy me a coffee</a>.</p>
+    </div>
+
+    <div class="q">
+      <h3>How much?</h3>
+      <p>Free. If it saves you time, <a href="https://github.com/sponsors/conformal-link">sponsor me a coffee</a>.</p>
+    </div>
+
+    <div class="q">
+      <h3>Why does macOS complain when I open it?</h3>
+      <p>It isn't notarized yet. <a href="docs/#installing">Here's the one-time fix</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer><span>Noaam · made by Conformal Link</span></footer>
+</div>
+</body>
+</html>

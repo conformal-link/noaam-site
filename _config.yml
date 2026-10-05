@@ -1,0 +1,39 @@
+title: Noaam
+description: "Not Another Agent Manager. Your tools are fine; Noaam keeps track of them."
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+
+# GitHub Pages enables these by default; listed so a local build matches.
+plugins:
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+
+relative_links:
+  enabled: true
+  collections: false
+
+titles_from_headings:
+  enabled: true
+  strip_title: false
+
+# Every page under docs/ uses the docs layout, front matter or not
+# (docs/status.md is copied in by the app's release script as plain Markdown).
+defaults:
+  - scope:
+      path: "docs"
+    values:
+      layout: doc
+
+exclude:
+  - README.md
+  - variants/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+optional_front_matter:
+  remove_originals: true

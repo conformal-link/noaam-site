@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.url == "/docs/" %}Guide{% else %}{{ page.title | strip_html }}{% endif %} · Noaam</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#141210; --panel:#1a1815; --ink:#eeebe3; --muted:#a8a49b; --faint:#6f6b63; --line:#2a2722; --accent:#ff7a59; --on-accent:#140c08; --w:1120px; --mono:"Geist Mono", monospace; }
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-padding-top: 24px; }
+body { margin: 0; background: var(--bg); color: var(--muted); font: 16px/1.7 Geist, system-ui, sans-serif; letter-spacing: -0.005em; }
+body::after { content:""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: .045; pointer-events: none; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: var(--w); margin: 0 auto; padding: 0 16px 96px; position: relative; }
+nav.top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand img { width: 26px; height: 26px; }
+.brand span, .links, .side, .note, footer, .button, th { font-family: var(--mono); }
+.brand span { font-weight: 500; font-size: 14px; }
+.links { display: flex; gap: 22px; align-items: center; font-size: 13px; }
+.links a { text-decoration: none; color: var(--muted); }
+.links a:hover, .links a[aria-current] { color: var(--ink); }
+.links .pill { color: var(--ink); border: 1px solid var(--line); padding: 6px 14px; border-radius: 6px; }
+
+.layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 56px; padding-top: 48px; }
+.side { font-size: 13px; position: sticky; top: 24px; align-self: start; max-height: calc(100vh - 48px); overflow: auto; }
+.side p { color: var(--faint); margin: 0 0 10px; }
+.side p::before { content: "// "; color: var(--accent); }
+.side ul { list-style: none; margin: 0 0 28px; padding: 0; }
+.side li { margin: 0; }
+.side a { display: block; text-decoration: none; color: var(--muted); padding: 5px 0 5px 12px; border-left: 1px solid var(--line); }
+.side a:hover { color: var(--ink); }
+.side a[aria-current] { color: var(--ink); border-left-color: var(--accent); }
+.side .toc a { font-size: 12px; color: var(--faint); }
+.side .toc a:hover { color: var(--ink); }
+
+.doc { min-width: 0; max-width: 760px; }
+.doc h1, .doc h2, .doc h3 { color: var(--ink); font-weight: 500; }
+.doc h1 { font-size: 44px; line-height: 1.05; letter-spacing: -0.04em; margin: 0 0 24px; }
+.doc h2 { font-size: 28px; letter-spacing: -0.03em; margin: 64px 0 14px; padding-top: 20px; border-top: 1px solid var(--line); }
+.doc h3 { font-size: 19px; letter-spacing: -0.02em; margin: 36px 0 10px; }
+.doc h2 a.anchor, .doc h3 a.anchor { text-decoration: none; color: var(--faint); margin-left: 8px; opacity: 0; font-family: var(--mono); font-size: .7em; }
+.doc h2:hover a.anchor, .doc h3:hover a.anchor { opacity: 1; }
+.doc p, .doc ul, .doc ol { margin: 0 0 16px; }
+.doc ul, .doc ol { padding-left: 22px; }
+.doc li { margin: 6px 0; }
+.doc li::marker { color: var(--faint); }
+.doc strong { color: var(--ink); font-weight: 500; }
+.doc em { color: var(--ink); }
+.doc a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.doc a:hover { color: var(--accent); }
+.doc hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+.doc code { font-family: var(--mono); font-size: .86em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--ink); }
+.doc pre { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; overflow-x: auto; margin: 0 0 20px; line-height: 1.55; }
+.doc pre code { background: none; border: 0; padding: 0; font-size: 13px; }
+.doc blockquote { margin: 0 0 20px; padding: 2px 0 2px 18px; border-left: 2px solid var(--accent); color: var(--muted); }
+.doc kbd { font-family: var(--mono); font-size: .85em; color: var(--ink); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; }
+.table { overflow-x: auto; margin: 0 0 24px; border-top: 1px solid var(--line); }
+.doc table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.55; }
+.doc th { text-align: left; font-weight: 400; font-size: 12px; color: var(--faint); padding: 10px 16px 8px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.doc td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.doc td:first-child { color: var(--ink); white-space: nowrap; }
+.doc .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 13px; }
+.doc .pager a { text-decoration: none; color: var(--muted); }
+.doc .pager a:hover { color: var(--ink); }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--faint); }
+
+@media (max-width: 860px) {
+  .layout { display: block; padding-top: 28px; }
+  .side { position: static; max-height: none; margin-bottom: 8px; display: flex; gap: 0 28px; flex-wrap: wrap; }
+  .side .toc-block { display: none; }
+  .side ul { display: flex; gap: 18px; margin-bottom: 16px; }
+  .side a { border-left: 0; padding: 4px 0; border-bottom: 1px solid transparent; }
+  .side a[aria-current] { border-bottom-color: var(--accent); }
+  .doc h1 { font-size: 34px; }
+  .doc h2 { font-size: 24px; margin-top: 48px; }
+  .doc td:first-child { white-space: normal; }
+}
+@media (max-width: 600px) { .links a:not(.pill) { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top">
+  <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/icon-256.png' | relative_url }}" alt=""><span>Noaam</span></a>
+  <div class="links">
+    <a href="{{ '/docs/' | relative_url }}" aria-current="page">Guide</a>
+    <a href="https://github.com/sponsors/conformal-link">Sponsor</a>
+    <a class="pill" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="side">
+    <div>
+      <p>Docs</p>
+      <ul>
+        <li><a href="{{ '/docs/' | relative_url }}"{% if page.url == "/docs/" or page.url == "/docs/index.html" %} aria-current="page"{% endif %}>Guide</a></li>
+        <li><a href="{{ '/docs/status.html' | relative_url }}"{% if page.url == "/docs/status.html" %} aria-current="page"{% endif %}>Status</a></li>
+      </ul>
+    </div>
+    <div class="toc-block">
+      <p>On this page</p>
+      <ul class="toc" id="toc"></ul>
+    </div>
+  </aside>
+
+  <article class="doc">
+{{ content }}
+  </article>
+</div>
+
+<footer><span>Noaam · made by Conformal Link</span><span><a href="https://github.com/conformal-link/noaam-site/discussions">Feedback and bugs</a></span></footer>
+</div>
+<script>
+// Tables scroll inside their own box on narrow screens; headings get anchors
+// and an "On this page" list.
+document.querySelectorAll('.doc table').forEach(function (t) {
+  var box = document.createElement('div'); box.className = 'table';
+  t.parentNode.insertBefore(box, t); box.appendChild(t);
+});
+var toc = document.getElementById('toc');
+document.querySelectorAll('.doc h2[id], .doc h3[id]').forEach(function (h) {
+  var a = document.createElement('a'); a.className = 'anchor'; a.href = '#' + h.id; a.textContent = '#'; a.setAttribute('aria-hidden', 'true');
+  h.appendChild(a);
+  if (h.tagName === 'H2' && toc) {
+    var li = document.createElement('li'), link = document.createElement('a');
+    link.href = '#' + h.id; link.textContent = h.firstChild.textContent.trim();
+    li.appendChild(link); toc.appendChild(li);
+  }
+});
+</script>
+</body>
+</html>
