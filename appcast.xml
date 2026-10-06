@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>Noaam</title>
+    <item>
+      <title>Noaam 0.0.2</title>
+      <pubDate>Tue, 06 Oct 2026 17:21:13 -0000</pubDate>
+      <sparkle:version>41</sparkle:version>
+      <sparkle:shortVersionString>0.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <enclosure url="https://github.com/conformal-link/noaam-site/releases/download/v0.0.2/Noaam.dmg" length="10022819" type="application/octet-stream" sparkle:edSignature="oIajGyXStPcjNISJpkf440d02RaG2/ePfRsBAGt+XgjxdpCzMOGUAYg9Cr9i7O6FnLb9zwXDejPR7L+lXINjDw==" />
+    </item>
+  </channel>
+</rss>
