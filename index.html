@@ -46,6 +46,8 @@ dt { color: var(--ink); padding-right: 28px; }
 ol { padding-left: 20px; margin: 0 0 18px; } li { margin: 6px 0; }
 code { font-family: var(--mono); font-size: .88em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--ink); }
 footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--faint); }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--ink); }
 @media (max-width: 600px) { .links a:not(.pill) { display: none; } dl { grid-template-columns: 1fr; } dd { border-top: 0; padding-top: 0; } }
 
 :root { --bg:#141210; --panel:#1a1815; --ink:#eeebe3; --muted:#a8a49b; --faint:#6f6b63; --line:#2a2722; --accent:#ff7a59; --on-accent:#140c08; --w:920px; --mono:"Geist Mono", monospace; }
@@ -148,6 +150,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
   <a class="brand" href="#"><img src="assets/icon-256.png" alt=""><span>Noaam</span></a>
   <div class="links">
     <a href="docs/">Guide</a>
+    <a href="https://github.com/conformal-link/noaam-site/discussions">Feedback</a>
     <a href="https://github.com/sponsors/conformal-link">Sponsor</a>
     <a class="pill" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download</a>
   </div>
@@ -314,7 +317,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
   </div>
 </section>
 
-<footer><span>Noaam · made by Conformal Link</span></footer>
+<footer><span>Noaam · made by Conformal Link</span><span><a href="https://github.com/conformal-link/noaam-site/discussions">Feedback</a> · <a href="https://github.com/sponsors/conformal-link">Sponsor</a></span></footer>
 </div>
 </body>
 </html>
