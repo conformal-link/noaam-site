@@ -177,7 +177,14 @@ so the hook is set up without touching the tool's own config.
  "skip": {"input.0": "Generate a title.*"}}
 ```
 `states` keys are event names, or `event:subtype`. Events naming a session
-other than the item's are ignored. `{noaamStatus}` is Noaam's helper; from
+other than the item's are ignored. `turn` (optional) is where the payload
+names its turn or message: the journal keeps that id, never the payload's
+text, so a reader finds the turn in the tool's own transcript.
+
+**`transcriptId`** (next to `adapters`, optional) — where each JSON line of
+the tool's transcript keeps its id (Claude Code `uuid`, Codex
+`payload.turn_id`). At each turn's start and end the journal records the
+latest one, so a reader can go straight to that point in the transcript. `{noaamStatus}` is Noaam's helper; from
 inside any Noaam terminal a script can also just run
 `noaam-status needs-you "approve?"` (also `working`, `idle`, `ended`,
 `attention`).
