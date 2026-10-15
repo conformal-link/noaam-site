@@ -5,7 +5,8 @@
 **Not Another Agent Manager.** Tired of agent managers? Me too. Noaam doesn't
 replace your tools or wrap your agents. It keeps track of the coding agents,
 editors, terminals and pages you already use, filed under the repo, worktree
-or folder they belong to.
+or folder they belong to, and remembers what you worked on: ask your agent
+for a timesheet, a standup or where you were yesterday.
 
 Free for macOS 14 or later (Apple silicon).
 

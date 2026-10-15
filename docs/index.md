@@ -3,7 +3,8 @@
 Noaam keeps track of the coding agents, editors, terminals and pages you
 already use, filed under the repository, worktree or folder they belong to.
 It never replaces them: a Claude Code session is still Claude Code, VS Code
-is still VS Code. Noaam keeps a pointer and brings the right one up.
+is still VS Code. Noaam keeps a pointer and brings the right one up. Its
+journal remembers what you worked on, for you and your agents to ask later.
 
 Free for macOS 14 or later (Apple silicon).
 [Download the latest release](https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg).
@@ -21,9 +22,9 @@ After that it opens like any other app.
 
 On first launch a setup panel asks where your code is, which of the
 repositories found there to show, which sessions belong in Noaam (under
-those folders, only in the chosen repositories, or everywhere) and which
-tools you use. The tools found on your Mac start ticked. Nothing is scanned
-or started until you finish.
+those folders, only in the chosen repositories, or everywhere), which
+tools you use and whether to keep a [journal](#the-journal). The tools found
+on your Mac start ticked. Nothing is scanned or started until you finish.
 
 ## The primitives
 
@@ -96,7 +97,9 @@ When you quit, Noaam asks only if a terminal is busy, and says why.
   its own terminal with your text as its first message; a terminal takes it
   as its name, a browser as its address. Where browses the disk, so any
   directory can take an Item, and can make a new worktree or Space on the
-  way. ⌃⌘N, ⌃⌘⇧N and ⌃⌘⌥N make an Item of your first three tools right away.
+  way. Clicking a folder opens it; **Here** at the top picks the folder
+  itself, also one of your root folders (with a single root, Here is
+  already at the top). ⌃⌘N, ⌃⌘⇧N and ⌃⌘⌥N make an Item of your first three tools right away.
 - **Real terminals.** Embedded terminals are Ghostty's own engine: your
   theme, GPU rendering, native scrollback. ⌘F finds in the terminal. Drop a
   file or a screenshot thumbnail onto one to paste its path; Claude Code
@@ -104,6 +107,9 @@ When you quit, Noaam asks only if a terminal is busy, and says why.
 - **Terminal history survives.** Terminals keep what they printed. Reopen
   one after the process died, Noaam quit or the Mac restarted, and the old
   output comes back before the tool starts again, embedded or in Ghostty.
+  Docking and undocking keep it too. Claude Code, Codex and opencode start
+  with it off, since resuming a session prints the conversation again; turn
+  it on per tool with Settings › Tools › Keep terminal history.
 - **VS Code** opens embedded (VS Code's own local web server) or as your
   desktop VS Code. The embedded one starts bare: turn on Backup and Sync
   Settings once from its account menu to bring your extensions and settings
@@ -117,6 +123,11 @@ When you quit, Noaam asks only if a terminal is busy, and says why.
   Noaam its width back. Needs Accessibility permission the first time.
 - **Open elsewhere.** ⌃⌘E hands the current pane to its own app: Ghostty,
   the VS Code app, your browser.
+- **Move to…** (right-click an Item) puts it in another folder or Space,
+  with the composer's place picker; it starts there from then on (a
+  running Item keeps its directory until it restarts). On for the Claude
+  Code, Codex, opencode, VS Code, Neovim, Terminal and browser tools; turn
+  it on for your own in Settings › Tools.
 - **Hidden items unload when quiet.** Terminals and pages you aren't looking
   at stop after a while, or past a number kept loaded, and come back when
   shown: the session resumes with its history, the page reloads. Nothing
@@ -152,6 +163,48 @@ work login never shows in the personal one. A new profile starts with the
 setup panel; a duplicate starts with the original's settings. Manage them in
 Settings › Profiles or App menu › Profile.
 
+## The journal
+
+Each profile keeps a journal: a file per day of what happened, so you and
+your agents can ask later what you worked on and for how long. It records:
+
+- which Items were shown and focused, and when
+- the app in front, and optionally its window's title (a page or a
+  document name; uses the Accessibility permission docking asks for)
+- whether you were typing or clicking (not the keystrokes, it's not a
+  keylogger)
+- screen lock, display and system sleep
+- commits and branch switches in your repositories and worktrees, also those
+  made while Noaam was closed
+- when each agent's turns start and end, and pages visited in web panes
+
+For agent sessions it keeps a pointer into the files your agents already
+write (Claude Code's session file, Codex's rollout) at each turn, so a
+reader can look up what was said there.
+
+The journal stays on your Mac, in the profile's folder. Finished days are
+compressed. Settings › Journal turns it off, sets how long it's kept
+(forever by default) and how finely input is sampled.
+
+### Asking it
+
+The `noaam` command reads the journal, even with Noaam closed, and asks the
+running Noaam about its Items. Settings › Journal › Install links it as
+`~/.local/bin/noaam`; it's also on the path of Noaam's own terminals.
+
+```
+noaam spans --ev item.focus --since monday --by repo --gap 300
+```
+
+sums the time each repository had focus this week, counting only time
+within five minutes of input. `noaam --help` lists every command, and
+`noaam events` explains every journal line.
+
+You rarely need to type it yourself. **Teach an Agent** (Settings ›
+Journal) opens a session of your coding agent that installs Noaam's skill.
+From then on, ask it in plain words: *"make me a timesheet of my hours
+this week, by project"*, *"what did I do yesterday?"*, *"write my standup"*.
+
 ## Settings
 
 ⌘, opens Settings. It edits the profile's `config.json`, which stays
@@ -163,11 +216,19 @@ readable and hand-editable.
 | Overview | how Noaam works, the scan interval, every source a scan uses and what it found last time, which found items to keep |
 | Repositories | where to look for repositories, and which ones show |
 | Sidebar | per folder kind its icon and when it stays visible, pinned folders, order, sidebar mode |
-| Tools | add ready-made tools from **+** (Claude Code, Codex, opencode, Pi, VS Code, Neovim, Terminal, TextEdit, browsers) or define your own: commands, how existing items are found, how they open, status, when hidden, icon |
+| Tools | add ready-made tools from **+** (Claude Code, Codex, opencode, Pi, VS Code, Neovim, Terminal, TextEdit, browsers) or define your own: commands, how existing items are found, how they open, status, when hidden, keep terminal history, ask before quitting, whether items can move to another folder, icon |
 | Terminal | theme and font size of embedded terminals |
 | Web | default page zoom, search engine, URL bar history |
 | Shortcuts | every keyboard shortcut |
-| Storage | every path and what it holds, Check storage |
+| Storage | every path, what it holds and its size on disk, Check storage |
+| Journal | keep a journal, how long, window titles, input sampling, the `noaam` command and Teach an Agent |
+| Updates | Automatic, Notify only or Off, and Check Now; the same for every profile |
+
+Noaam checks for updates once a day. With Automatic it downloads them in
+the background and installs when you quit, or right away if you click
+Restart in the strip above the sidebar's bottom bar. Notify only says an
+update is out and waits for you to click Install. Off only checks when you
+pick Noaam › Check for Updates…
 
 Everything Noaam knows is plain files under `~/.config/noaam`, one small
 JSON file per Folder and Item.

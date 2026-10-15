@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noaam</title>
-<meta name="description" content="Noaam: Not Another Agent Manager. Your tools are fine. Noaam just keeps track of them: the sessions, editors, terminals and pages that belong to each repo and worktree. Free for macOS.">
+<meta name="description" content="Noaam: Not Another Agent Manager. Your tools are fine. Noaam just keeps track of them: the sessions, editors, terminals and pages that belong to each repo and worktree, and what you worked on, for you or your agents to ask later. Free for macOS.">
 <meta property="og:title" content="Noaam: Not Another Agent Manager">
-<meta property="og:description" content="Tired of agent managers? Me too. Noaam keeps the agents, editors and pages you already use filed by repo and worktree. Free for macOS.">
+<meta property="og:description" content="Tired of agent managers? Me too. Noaam keeps the agents, editors and pages you already use filed by repo and worktree, and remembers what you worked on. Free for macOS.">
 <meta property="og:image" content="https://noaam.dev/assets/og.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -142,6 +142,9 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 .qa p a, .final .note a { color: var(--ink); text-decoration-color: var(--faint); text-underline-offset: 3px; }
 .qa blockquote.pull { margin-top: 4px; }
 .footnote { font-family: var(--mono); font-size: 12px; color: var(--faint); margin: 16px 0 0; }
+.journal .prompt { font-family: var(--mono); font-size: 14px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 0 0 18px; max-width: none; }
+.journal .prompt::before { content: "> "; color: var(--accent); }
+.journal .also { margin-top: 28px; }
 </style>
 </head>
 <body>
@@ -159,7 +162,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 <header class="hero">
   <p class="kicker">Not Another Agent Manager</p>
   <h1>Tired of agent managers?<span class="metoo">Me too.</span></h1>
-  <p class="lede">Most of them are barking up the wrong layer. Don't reinvent my tools. No more chat wrappers. This is Noaam.</p>
+  <p class="lede">Most of them are barking up the wrong layer. Don't reinvent my tools. No more chat wrappers. This is Noaam: it keeps track of what's running, and remembers what you worked on.</p>
   <div class="cta">
     <a class="button" href="https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg">Download for macOS</a>
     <span class="note">Free · macOS 14+ · Apple silicon</span>
@@ -204,15 +207,29 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
       <figure class="crop"><img src="assets/shots/tiles.webp" width="1800" height="1410" alt="A tiled Space: the agent, the page it is building and the editor, side by side." loading="lazy"></figure>
     </div>
 
-    <div class="feature">
+    <div class="feature journal">
       <span class="num">04</span>
+      <h3>It remembers what you worked on.</h3>
+      <p>While you work, Noaam keeps a journal of which sessions, editors and pages you were in, for how long, and what you committed. There's nothing to start or stop. When you need a timesheet, ask your agent.</p>
+      <p class="prompt">can you create a page with time track of my hours for the month, as a calendar? the clients and projects I book time on are in projects.json</p>
+      <figure class="crop"><img src="assets/shots/timesheet.webp" width="1800" height="1523" alt="An October timesheet Claude Code built from Noaam's journal: a month calendar with hours per day colored by project, days already logged and days still to log, today's suggested entries and totals per client and project." loading="lazy"></figure>
+      <ul class="also">
+        <li><b>Any agent can ask</b>The <code>noaam</code> command reads the journal, even with Noaam closed. One click in Settings teaches your coding agent how.</li>
+        <li><b>Ask for anything</b>Timesheets, a standup, a weekly summary, or where the heck you were yesterday.</li>
+        <li><b>Down to the turn</b>It points into your agents' own transcripts, so an answer can say what each hour was spent on.</li>
+        <li><b>Only yours</b>A file per day, kept as long as you like.</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <span class="num">05</span>
       <h3>Your real apps. Not another half-baked TUI.</h3>
       <p>Any item opens in its own app with one click. Or dock that app's window next to the sidebar, or into a tile of a Space, and it moves with Noaam.</p>
       <figure class="crop"><img src="assets/shots/docked-tile.webp" width="1800" height="1179" alt="A Space with the Tidepool page and VS Code embedded, and a real Ghostty window running Claude Code docked as the right-hand tile." loading="lazy"></figure>
     </div>
 
     <div class="feature">
-      <span class="num">05</span>
+      <span class="num">06</span>
       <h3>Work stays at work.</h3>
       <p>Profiles keep work and side projects apart: their own folders, tools and web sign-ins. Each runs as its own Noaam, side by side in ⌘-Tab.</p>
       <div class="switcher" aria-label="Two Noaam profiles side by side in the app switcher">
@@ -237,7 +254,8 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
     <li><b>Keys that never collide*</b>Noaam's commands live on ⌃⌘. Plain ⌘ keys stay with your tools.</li>
     <li><b>Scrollback survives</b>Crash, quit or reboot, and a terminal's old output is still there.</li>
     <li><b>Light on memory</b>Hidden items unload when quiet and resume when you come back.</li>
-    <li><b>Settle, never delete</b>Hide what's done. Your sessions, worktrees and files stay put.</li>
+    <li><b>Settle instead of deleting</b>Hide what's done. Your sessions, worktrees and files stay put.</li>
+    <li><b>Move it later</b>Started a session in the wrong folder? Move to… puts it in another folder or Space.</li>
     <li><b>No lock-in</b>Everything Noaam knows is small JSON files in <code>~/.config/noaam</code>. Delete Noaam and your sessions, worktrees and files are exactly where they were.</li>
   </ul>
   <p class="footnote">* Except ⌘Q, ⌘W, ⌘, (Settings), ⌘H and ⌘M, which always go to Noaam, and any ⌃⌘ shortcut a tool of yours also uses.</p>
@@ -272,7 +290,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 
     <div class="q">
       <h3>So what's actually broken?</h3>
-      <p>Keeping track of it all. I work in a repo, a worktree, some random folder. By lunch that folder has eleven agent sessions on it, three browser tabs and an editor window, and nothing on my machine knows they belong together. Which session is waiting on me? Which tab was for which task? Where the heck was I yesterday?</p>
+      <p>Keeping track of it all. I work in a repo, a worktree, some random folder. By lunch that folder has eleven agent sessions on it, three browser tabs and an editor window, and nothing on my machine knows they belong together. Which session is waiting on me? Which tab was for which task? Where the heck was I yesterday? And come Friday, where did the week go?</p>
       <p><b>Noaam is only that layer.</b></p>
     </div>
 
@@ -287,6 +305,11 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
     <div class="q">
       <h3>Does it send my code anywhere?</h3>
       <p>No. No account, no server, no telemetry. Your agents talk to whoever they already talk to.</p>
+    </div>
+
+    <div class="q">
+      <h3>What does the journal record?</h3>
+      <p>Which items you looked at and when, the app in front, whether you were typing or clicking (not the keystrokes, it's not a keylogger :)), when the screen locked, commits and branch switches, and when each agent turn started and ended. Window titles of other apps are optional. It stays on your Mac, and you can switch it off or set how long it's kept in Settings › Journal.</p>
     </div>
 
     <div class="q">
