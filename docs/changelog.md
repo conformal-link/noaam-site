@@ -2,7 +2,7 @@
 
 What changed in each release of Noaam, newest first.
 
-## 0.0.7 — 2026-10-14
+## 0.0.7 — 2026-10-14 {#v0.0.7}
 
 - **Move to…**: right-click an item in the sidebar and choose **Move to…**
   to put it in another folder or Space. It picks the place the way the
@@ -17,20 +17,20 @@ What changed in each release of Noaam, newest first.
 - An auto-hidden sidebar no longer comes back by itself and shrinks the
   content beside it.
 
-## 0.0.6 — 2026-10-13
+## 0.0.6 — 2026-10-13 {#v0.0.6}
 
 - A restored terminal says *starting…* until its command shows something.
 - Keys typed while a terminal's history is replayed no longer echo.
 
-## 0.0.5 — 2026-10-13
+## 0.0.5 — 2026-10-13 {#v0.0.5}
 
 - ⌘⌫ clears to the start of the line (⌃U) in Noaam's terminals.
 
-## 0.0.4 — 2026-10-13
+## 0.0.4 — 2026-10-13 {#v0.0.4}
 
 - A long tile title truncates instead of running under the header buttons.
 
-## 0.0.3 — 2026-10-07
+## 0.0.3 — 2026-10-07 {#v0.0.3}
 
 - **Journal**: each profile can keep a journal of raw signals with times
   (Noaam active, the app in front, items shown and focused, windows, screen
@@ -60,7 +60,7 @@ What changed in each release of Noaam, newest first.
 - The Claude preset finds `claude` on your PATH when it isn't in one of the
   usual places.
 
-## 0.0.2 — 2026-10-06
+## 0.0.2 — 2026-10-06 {#v0.0.2}
 
 - **Updates**: Noaam checks for updates once a day and shows them in a strip
   in the sidebar, never a dialog. Settings › Updates picks Automatic
@@ -72,7 +72,7 @@ What changed in each release of Noaam, newest first.
 - TextEdit items are note files in their folder, so ⌘S saves there and
   reopening an item opens the same file.
 
-## 0.0.1 — 2026-10-06
+## 0.0.1 — 2026-10-06 {#v0.0.1}
 
 First release.
 
