@@ -2,6 +2,22 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.8 — 2026-10-15 {#v0.0.8}
+
+- **Move to…** now shows for tools you set up before 0.0.7 too: Claude
+  Code, Codex, opencode, VS Code, Neovim, Terminal and browser items get it
+  in their right-click menu in the sidebar. A tool you made yourself keeps
+  its setting (Settings › Tools › *the tool* › **Items can move to another
+  folder**).
+- **What's new**: the update strip above the sidebar's bottom bar has a
+  What's new button that opens that version's changes on noaam.dev. After
+  an update, the strip says which version you are on, with What's new too;
+  close it with ×.
+- **Help menu**: Help › Noaam Guide opens the guide, Help › What's New in
+  Noaam this version's changes, and Help › Send Feedback… the discussions
+  on GitHub, where you can post ideas and bug reports. Each opens in your
+  default browser. The menu's search field finds any menu command.
+
 ## 0.0.7 — 2026-10-14 {#v0.0.7}
 
 - **Move to…**: right-click an item in the sidebar and choose **Move to…**
