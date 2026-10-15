@@ -4,10 +4,16 @@ What changed in each release of Noaam, newest first.
 
 ## 0.0.7 — 2026-10-14
 
-- **Move to…** puts an item in another folder or Space with the composer's
-  place picker. Tools opt in with their "movable" setting, on in the Claude,
-  Codex, opencode, VS Code, Neovim, Terminal and browser presets.
-- Move to Space skips settled Spaces.
+- **Move to…**: right-click an item in the sidebar and choose **Move to…**
+  to put it in another folder or Space. It picks the place the way the
+  composer does, and the item starts there from then on (a running one
+  keeps its directory until it restarts).
+- Move to… is there for Claude Code, Codex, opencode, VS Code, Neovim,
+  Terminal and browser items. A tool you added before 0.0.7 has it off: turn
+  on Settings › Tools › *the tool* › **Items can move to another folder**.
+  A new session shows it once it has started and Noaam knows its id.
+- The **Move to Space** submenu in the same menu no longer lists settled
+  Spaces.
 - An auto-hidden sidebar no longer comes back by itself and shrinks the
   content beside it.
 
@@ -32,10 +38,12 @@ What changed in each release of Noaam, newest first.
   navigation, git branch and commit activity, window titles if you allow
   them). Kept forever by default; Settings › Journal. The setup panel asks
   whether to keep one.
-- **`noaam` command line tool** (linked as `~/.local/bin/noaam`): lists and
-  selects items, and reads the journal, also with Noaam closed.
-- **Teach an Agent** installs the Noaam skill in an agent of your choice, so
-  it can answer what you worked on and which sessions need you.
+- **`noaam` command line tool**: lists and selects items, and reads the
+  journal, also with Noaam closed. Install it from Settings › Journal ›
+  Command line (it is linked as `~/.local/bin/noaam`).
+- **Teach an Agent**, next to Install there, opens a session of the agent you
+  pick and asks it to install Noaam's skill, so your agents can answer what
+  you worked on and which sessions need you.
 - Agents (Claude Code, Codex, opencode) keep no terminal recording, since
   resuming prints the conversation again. Terminal history now survives
   docking and reopening.
@@ -46,8 +54,11 @@ What changed in each release of Noaam, newest first.
   longer reach the new shell as text (seen after htop).
 - Lower CPU use with many sessions: a transcript is read whole only once, and
   the sidebar rebuilds only when sessions changed.
-- Smoother divider dragging; "Here" in setup picks a root; the Claude preset
-  falls back to its command name.
+- Smoother divider dragging.
+- A root folder itself can be the place for a new item: in the composer's
+  place picker, open the root and choose **Here**.
+- The Claude preset finds `claude` on your PATH when it isn't in one of the
+  usual places.
 
 ## 0.0.2 — 2026-10-06
 
