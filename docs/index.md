@@ -228,7 +228,8 @@ Noaam checks for updates once a day. With Automatic it downloads them in
 the background and installs when you quit, or right away if you click
 Restart in the strip above the sidebar's bottom bar. Notify only says an
 update is out and waits for you to click Install. Off only checks when you
-pick Noaam › Check for Updates…
+pick Noaam › Check for Updates… What's new in the strip, or Help › What's
+New in Noaam, opens the [changelog](changelog.md).
 
 Everything Noaam knows is plain files under `~/.config/noaam`, one small
 JSON file per Folder and Item.
@@ -264,4 +265,5 @@ own shortcuts.
 ---
 
 Made by Conformal Link. Feedback, ideas and bug reports:
-[start a discussion](https://github.com/conformal-link/noaam-site/discussions).
+[start a discussion](https://github.com/conformal-link/noaam-site/discussions),
+or pick Help › Send Feedback… in Noaam. Help › Noaam Guide opens this page.
