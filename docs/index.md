@@ -7,7 +7,7 @@ is still VS Code. Noaam keeps a pointer and brings the right one up. Its
 journal remembers what you worked on, for you and your agents to ask later.
 
 Free for macOS 14 or later (Apple silicon).
-[Download the latest release](https://github.com/conformal-link/noaam-site/releases/latest/download/Noaam.dmg).
+[Download the latest release](/download).
 
 ## Installing
 
