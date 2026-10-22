@@ -2,6 +2,12 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.9 — 2026-10-22 {#v0.0.9}
+
+- **⌃⌘W closes the window** (File › Close), like Noaam's other ⌃⌘
+  commands. ⌘W now goes to the focused pane, so it closes a tab in VS Code
+  or a browser, or a terminal split, instead of the whole Noaam window.
+
 ## 0.0.8 — 2026-10-15 {#v0.0.8}
 
 - **Move to…** now shows for tools you set up before 0.0.7 too: Claude
