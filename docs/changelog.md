@@ -2,6 +2,15 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.10 — 2026-11-02 {#v0.0.10}
+
+- **Opening an item no longer moves it up.** In the sidebar's Recent view,
+  and in the tree when Settings › Sidebar › Order is set to Recent
+  activity, an item now moves up only when it has something new for you:
+  an agent session when it finishes a reply, a terminal when it rings its
+  bell or sends a notification. Selecting, resuming or loading an item,
+  or browsing in a page, leaves it where it is.
+
 ## 0.0.9 — 2026-10-22 {#v0.0.9}
 
 - **⌃⌘W closes the window** (File › Close), like Noaam's other ⌃⌘
