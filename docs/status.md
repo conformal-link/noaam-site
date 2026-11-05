@@ -213,6 +213,46 @@ line the moment something happens (a log tail, an event stream). Restarted
 with a growing pause if it exits.
 `{"id": "mytool.events", "kind": "stream", "run": "mytool events --json"}`
 
+## Control: sending, answering, interrupting
+
+A preset can also say how Noaam acts on the tool's items when the control
+socket asks (`noaam send`, `answer`, `interrupt`, `read`, and the voice,
+which uses them). Without a `control` block none of that exists for the
+tool; with one, each command still stays off until you allow it in
+Settings › Tools › Remote control.
+
+```json
+"control": {
+  "presentations": ["terminal"],
+  "send":      {"when": ["idle", "to-read"], "submit": ["enter"], "stash": ["ctrl+s"]},
+  "answer":    {"when": ["needs-you"], "choices": {"yes": ["enter"], "no": ["escape"]}},
+  "interrupt": {"when": ["working", "needs-you"], "keys": ["escape"]},
+  "read":      {"match": {"type": "assistant"}, "text": "message.content[].text"}
+}
+```
+
+- **presentations**: where Noaam can reach the tool's input. Only
+  `terminal` (Noaam's own) works today.
+- **when**: the statuses a command is allowed in: `idle`, `working`,
+  `needs-you`, `to-read`, `open`. Any one is enough.
+- **send**: the text is pasted, then `submit`'s keys are pressed.
+  `stash`'s keys are pressed first: they set aside whatever you have
+  typed in the prompt, and the tool puts it back once the message is sent
+  (Claude Code's ⌃S). A tool without one gets `refuseIfDraft`: Noaam
+  refuses while you have something half typed there.
+- **answer**: each choice name and the keys that pick it. `question`
+  says where the transcript names what is being asked: the newest line
+  matching `match` (searching back no further than a `stopAt` line), its
+  values at `texts` joined.
+- **progress**: the agent's steps on the way to a reply, read the same
+  way from each new transcript line. The voice keeps up with them.
+- **interrupt**: the keys that stop a turn.
+- Keys are the terminal's key names (`enter`, `escape`, `tab`, `arrowDown`,
+  `digit1`, `a`…), with `ctrl+`, `shift+` or `alt+` in front as needed.
+- **read**: where the transcript keeps the agent's replies: lines whose
+  `match` paths have those values; the text at `text`. Paths are dotted;
+  `name[]` walks an array.
+
 ## Teaching Noaam a new tool, step by step
 
 Say `mytool`, a coding agent CLI nobody has written a preset for.

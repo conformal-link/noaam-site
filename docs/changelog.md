@@ -2,6 +2,47 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.11 — 2026-11-05 {#v0.0.11}
+
+- **Talk to Noaam.** Turn it on in Settings › Voice › Talk to Noaam, then
+  press ⌃⌥Space to start talking and again to stop (a quiet spell ends it
+  too). A speech-to-speech model is the voice of one of your agent
+  sessions, your assistant: what you say goes to it as a message and its
+  reply is read back, so the conversation stays in that session's
+  transcript and the voice can do whatever it can (its tools, your
+  connected accounts, your other items through the `noaam` command). What
+  it hears and says is in the journal (`noaam journal --ev voice`).
+- **Pick the voice's assistant** with **Use as Voice Assistant** in a
+  Claude Code or Codex item's right-click menu, or under Settings › Voice
+  › Assistant; otherwise it's the item selected when you press the key.
+  It needn't be open: Noaam starts it in the background.
+- **A voice that keeps you company.** The default voice is OpenAI Live
+  (GPT-Live): it talks and listens at once, says "on it" and stays with
+  you while the assistant works, knows what it's doing step by step,
+  reacts while you talk ("mm-hmm") and stops when you talk over it.
+  OpenAI Realtime and Gemini Live are in Settings › Voice › Provider too.
+  Paste your own API key there; it's kept in Noaam's app files, readable
+  only by you.
+- **Permissions and follow-ups by voice.** When the assistant asks to run
+  something, the voice reads you the command: say "yes" or "no". What you
+  say while it's busy goes in right away, and Claude Code takes it before
+  its next step.
+- **Spoken alerts.** The voice tells you when another item needs you or
+  finishes, with what it asked or said, also when no conversation is open
+  (Settings › Voice › Alerts).
+- **Remote control for agents.** `noaam send`, `answer`, `interrupt`,
+  `start` and `read` act on items from a terminal or another agent, and are
+  what the voice uses. Claude Code and Codex know how (their presets have a
+  new `control` block, which reaches tools set up before this release too),
+  but sending, answering and interrupting are off until you turn them on in
+  Settings › Tools › (the tool) › Remote control. Only items running in
+  Noaam's own terminal can be reached. A prompt you're halfway through
+  typing in Claude Code is set aside (its ⌃S stash) and comes back once
+  the message is sent.
+- **A new session that never got a message reopens.** One made in Noaam
+  and closed before its first message used to show "No conversation
+  found" and crash when reopened; it now starts again under its id.
+
 ## 0.0.10 — 2026-11-02 {#v0.0.10}
 
 - **Opening an item no longer moves it up.** In the sidebar's Recent view,
