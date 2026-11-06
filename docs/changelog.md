@@ -2,6 +2,13 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.13 — 2026-11-06 {#v0.0.13}
+
+- **Unload hidden sessions after hours or days.** Settings › Tools › (a
+  tool) › When hidden › "After … hidden" now goes past 8 hours: every 5
+  minutes up to an hour, then hourly up to a day, then daily up to two
+  weeks. Set it to 1 day to stop sessions left idle overnight.
+
 ## 0.0.12 — 2026-11-06 {#v0.0.12}
 
 - **The voice sounds like ChatGPT's.** OpenAI Live now connects over
