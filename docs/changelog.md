@@ -2,6 +2,20 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.14 — 2026-11-06 {#v0.0.14}
+
+- **The voice works over AirPods and other headphones.** It used to hear
+  next to nothing through AirPods and never answer. Apple's echo
+  cancellation made your voice too quiet for it, and kept the AirPods in
+  their low-quality headset mode. Settings › Voice › Microphone › Echo
+  cancellation is new: Automatic (the default) turns it off while the sound
+  goes to headphones (Bluetooth or the headphone jack), which don't echo,
+  and noise suppression takes over the background noise. On and Off force
+  it either way. Nothing to turn on.
+- **The voice keeps going when your audio changes.** Connecting or taking
+  off AirPods mid-conversation used to leave the voice silent; it now
+  picks up the new microphone and speakers.
+
 ## 0.0.13 — 2026-11-06 {#v0.0.13}
 
 - **Unload hidden sessions after hours or days.** Settings › Tools › (a
