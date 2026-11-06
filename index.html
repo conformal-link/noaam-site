@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noaam</title>
-<meta name="description" content="Noaam: Not Another Agent Manager. Your tools are fine. Noaam just keeps track of them: the sessions, editors, terminals and pages that belong to each repo and worktree, and what you worked on, for you or your agents to ask later. Free for macOS.">
+<meta name="description" content="Noaam: Not Another Agent Manager. Your tools are fine. Noaam just keeps track of them: the sessions, editors, terminals and pages that belong to each repo and worktree, and what you worked on, for you or your agents to ask later. Now you can talk to them too. Free for macOS.">
 <meta property="og:title" content="Noaam: Not Another Agent Manager">
-<meta property="og:description" content="Tired of agent managers? Me too. Noaam keeps the agents, editors and pages you already use filed by repo and worktree, and remembers what you worked on. Free for macOS.">
+<meta property="og:description" content="Tired of agent managers? Me too. Noaam keeps the agents, editors and pages you already use filed by repo and worktree, and remembers what you worked on. Now you can talk to them too. Free for macOS.">
 <meta property="og:image" content="https://noaam.dev/assets/og.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -145,6 +145,10 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 .journal .prompt { font-family: var(--mono); font-size: 14px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 0 0 18px; max-width: none; }
 .journal .prompt::before { content: "> "; color: var(--accent); }
 .journal .also { margin-top: 28px; }
+.new { margin: 18px 0 0; font-family: var(--mono); font-size: 13px; }
+.new a { color: var(--accent); text-decoration: none; }
+.new a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.voice video { width: 100%; height: auto; display: block; }
 </style>
 </head>
 <body>
@@ -167,6 +171,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
     <a class="button" href="/download">Download for macOS</a>
     <span class="note">Free · macOS 14+ · Apple silicon</span>
   </div>
+  <p class="new"><a href="#voice">New: talk to your agents →</a></p>
 </header>
 
 <figure class="frame shot">
@@ -221,15 +226,27 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
       </ul>
     </div>
 
-    <div class="feature">
+    <div class="feature journal voice" id="voice">
       <span class="num">05</span>
+      <h3>Talk to all your agents.</h3>
+      <p>Press ⌃⌥Space and ask what your sessions are up to. The voice talks to one Claude Code or Codex session, and that session can check on the others, answer their permission prompts and send them work through the <code>noaam</code> command. When another session finishes or needs you, the voice tells you. What you say stays in that session's transcript, so you can scroll back or carry on typing later.</p>
+      <figure class="crop"><video src="assets/shots/voice.mp4" poster="assets/shots/voice-poster.webp" width="1920" height="1206" controls playsinline preload="metadata" aria-label="Talking to Noaam: asking what three sessions are up to, telling one to go ahead with its tests, asking another to run its tests, and hearing that a third has finished."></video></figure>
+      <ul class="also">
+        <li><b>Check on everything</b>“What are my sessions up to?” gets you where each one stands and what it last said.</li>
+        <li><b>Answer from anywhere</b>“Tell ledgerline yes” answers the permission prompt in that session.</li>
+        <li><b>Send work over</b>“Ask quill to run its tests” goes to quill as a message.</li>
+        <li><b>Hear what needs you</b>When another session asks for permission or finishes, the voice tells you what it asked or said.</li>
+      </ul>
+    </div>
+    <div class="feature">
+      <span class="num">06</span>
       <h3>Your real apps. Not another half-baked TUI.</h3>
       <p>Any item opens in its own app with one click. Or dock that app's window next to the sidebar, or into a tile of a Space, and it moves with Noaam.</p>
       <figure class="crop"><img src="assets/shots/docked-tile.webp" width="1800" height="1179" alt="A Space with the Tidepool page and VS Code embedded, and a real Ghostty window running Claude Code docked as the right-hand tile." loading="lazy"></figure>
     </div>
 
     <div class="feature">
-      <span class="num">06</span>
+      <span class="num">07</span>
       <h3>Work stays at work.</h3>
       <p>Profiles keep work and side projects apart: their own folders, tools and web sign-ins. Each runs as its own Noaam, side by side in ⌘-Tab.</p>
       <div class="switcher" aria-label="Two Noaam profiles side by side in the app switcher">
@@ -256,6 +273,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
     <li><b>Light on memory</b>Hidden items unload when quiet and resume when you come back.</li>
     <li><b>Settle instead of deleting</b>Hide what's done. Your sessions, worktrees and files stay put.</li>
     <li><b>Move it later</b>Started a session in the wrong folder? Move to… puts it in another folder or Space.</li>
+    <li><b>Remote control</b><code>noaam send</code>, <code>answer</code>, <code>interrupt</code> and <code>read</code> let a terminal or another agent drive your sessions. Off per tool until you allow it.</li>
     <li><b>No lock-in</b>Everything Noaam knows is small JSON files in <code>~/.config/noaam</code>. Delete Noaam and your sessions, worktrees and files are exactly where they were.</li>
   </ul>
   <p class="footnote">* Except ⌘Q, ⌘W, ⌘, (Settings), ⌘H and ⌘M, which always go to Noaam, and any ⌃⌘ shortcut a tool of yours also uses.</p>
@@ -304,7 +322,7 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 
     <div class="q">
       <h3>Does it send my code anywhere?</h3>
-      <p>No. No account, no server, no telemetry. Your agents talk to whoever they already talk to.</p>
+      <p>No. No account, no server, no telemetry. Your agents talk to whoever they already talk to. If you turn on the voice, your audio goes to OpenAI or Google only while a conversation is open, and your key stays on your Mac.</p>
     </div>
 
     <div class="q">
@@ -314,12 +332,12 @@ section.questions { margin-top: 112px; padding-top: 72px; border-top: 1px solid 
 
     <div class="q">
       <h3>Does it run my agents for me?</h3>
-      <p>No. They run exactly where they always do, on your Mac, with your subscription. Noaam just keeps track.</p>
+      <p>No. They run exactly where they always do, on your Mac, with your subscription. Noaam keeps track, and if you talk to one, types what you said into it.</p>
     </div>
 
     <div class="q">
       <h3>Do I need an API key?</h3>
-      <p>No. Noaam doesn't call any model.</p>
+      <p>Not for Noaam. The voice is the only part that calls a model, and it's optional: bring your own OpenAI or Gemini key.</p>
     </div>
 
     <div class="q">

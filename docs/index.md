@@ -205,6 +205,56 @@ Journal) opens a session of your coding agent that installs Noaam's skill.
 From then on, ask it in plain words: *"make me a timesheet of my hours
 this week, by project"*, *"what did I do yesterday?"*, *"write my standup"*.
 
+## Voice
+
+Talk to Noaam is a voice for one of your agent sessions. Press ⌃⌥Space,
+say what you want, and it goes to that session as an ordinary message; its
+reply is read back to you. The conversation stays in the session's own
+transcript, so you can scroll it, type into it or resume it later. The
+voice can do whatever the session can: its tools, the accounts you
+connected to it (mail, calendar…), and your other items through the
+`noaam` command.
+
+To set it up:
+
+1. Settings › Voice: turn on **Talk to Noaam**.
+2. Under Provider, paste an OpenAI API key and press Save. It's kept in
+   Noaam's app files, readable only by you. The default provider, OpenAI
+   Live (GPT-Live), costs about $0.05 a minute, billed by OpenAI. OpenAI
+   Realtime and Gemini Live are there too.
+3. Pick the session to talk to: right-click a Claude Code or Codex item ›
+   **Use as Voice Assistant**, or choose it under Settings › Voice › Talk
+   to. Otherwise it's the item selected when you press the key. It needn't
+   be open; Noaam starts it in the background.
+4. Press ⌃⌥Space, wait for the pop, and talk. Press it again to stop; a
+   quiet spell ends it too.
+
+While it works:
+
+- The voice says it's on it and keeps you posted: it hears the agent's
+  steps, so "how's it going?" gets a real answer. It stops the moment you
+  talk over it.
+- When the agent asks to run something, the voice reads you the command.
+  Say "yes" or "no"; anything else and it asks again.
+- What you say while the agent is busy goes in right away.
+- If you were halfway through typing in the session, Noaam sets your draft
+  aside (Claude Code's ⌃S stash) and puts it back after.
+- Settings › Voice › Alerts: the voice tells you when another item needs
+  you or finishes, with what it asked or said, also when no conversation is
+  open if you like.
+
+Answering prompts and sending to items other than the assistant need
+Settings › Tools › *the tool* › Remote control, where each command is off
+until you allow it. The same commands are on the command line: `noaam
+send`, `answer`, `interrupt`, `start` and `read`.
+
+What the voice heard and said is in the journal (`noaam journal --ev
+voice`). Audio goes to the provider only while a conversation is open.
+
+Limits: the session must run in Noaam's own terminal, not a docked
+window; only one profile gets ⌃⌥Space at a time; and Gemini Live is less
+tested than OpenAI Live.
+
 ## Settings
 
 ⌘, opens Settings. It edits the profile's `config.json`, which stays
@@ -216,11 +266,12 @@ readable and hand-editable.
 | Overview | how Noaam works, the scan interval, every source a scan uses and what it found last time, which found items to keep |
 | Repositories | where to look for repositories, and which ones show |
 | Sidebar | per folder kind its icon and when it stays visible, pinned folders, order, sidebar mode |
-| Tools | add ready-made tools from **+** (Claude Code, Codex, opencode, Pi, VS Code, Neovim, Terminal, TextEdit, browsers) or define your own: commands, how existing items are found, how they open, status, when hidden, keep terminal history, ask before quitting, whether items can move to another folder, icon |
+| Tools | add ready-made tools from **+** (Claude Code, Codex, opencode, Pi, VS Code, Neovim, Terminal, TextEdit, browsers) or define your own: commands, how existing items are found, how they open, status, remote control, when hidden, keep terminal history, ask before quitting, whether items can move to another folder, icon |
 | Terminal | theme and font size of embedded terminals |
 | Web | default page zoom, search engine, URL bar history |
 | Shortcuts | every keyboard shortcut |
 | Storage | every path, what it holds and its size on disk, Check storage |
+| Voice | Talk to Noaam, the provider, its voice and API key, which item to talk to, spoken alerts |
 | Journal | keep a journal, how long, window titles, input sampling, the `noaam` command and Teach an Agent |
 | Updates | Automatic, Notify only or Off, and Check Now; the same for every profile |
 
@@ -256,6 +307,7 @@ own shortcuts.
 | ⌃⌘[ / ⌃⌘] | back / forward through the rows you visited |
 | ⌃⌘E | open the current pane in its own app |
 | ⌃⌘S | sidebar always shown or auto-hide |
+| ⌃⌥Space | start or stop talking to Noaam |
 | ⌘, | Settings |
 | ⌘+, ⌘-, ⌘0 | zoom the terminal font or the page |
 | ⌘F, ⌘G | find in the terminal or page |
