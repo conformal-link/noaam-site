@@ -2,6 +2,22 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.12 — 2026-11-06 {#v0.0.12}
+
+- **The voice sounds like ChatGPT's.** OpenAI Live now connects over
+  WebRTC, as ChatGPT's voice does: no more crackles or gaps. Noaam runs
+  the same speech detector as ChatGPT (Silero) on your Mac, so the voice
+  stops the moment you talk over it, and traffic or wind don't. Nothing to
+  turn on; Settings › Voice keeps working as before.
+- **Pick a voice by name.** Settings › Voice › Voice is now a menu of the
+  voices OpenAI offers, grouped Female, Male and In between, with each
+  accent or language noted (British, Irish, German, Japanese…). ChatGPT's
+  own voices, such as Maple, aren't offered to API keys; choosing one by
+  hand now says so.
+- **See which key is in use.** Settings › Voice shows the key in use
+  (masked, with where it comes from) with Change and Remove, instead of an
+  empty field.
+
 ## 0.0.11 — 2026-11-05 {#v0.0.11}
 
 - **Talk to Noaam.** Turn it on in Settings › Voice › Talk to Noaam, then
