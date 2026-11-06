@@ -2,6 +2,23 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.15 — 2026-11-06 {#v0.0.15}
+
+- **The voice no longer goes silent or crackles at the start over
+  AirPods.** When AirPods switch to their microphone mode, macOS's audio
+  for them stumbles for the first second or two (often in the first
+  conversation after Noaam starts): the voice crackled, it heard you
+  garbled or not at all, and sometimes the AirPods' microphone dropped
+  out altogether, so the voice never answered. Noaam now waits for the
+  audio to run steadily before listening and speaking (under a second
+  with the Mac's own speakers, at most 4 s), and if the microphone or
+  speaker goes dead mid-conversation it sets the audio up again by
+  itself. Nothing to turn on.
+- **If the voice hears itself on the Mac's speakers,** check Settings ›
+  Voice › Microphone › Echo cancellation: it should be Automatic (on for
+  speakers, off for headphones). Set to Off, the voice hears its own
+  replies through the speakers and keeps cutting itself off.
+
 ## 0.0.14 — 2026-11-06 {#v0.0.14}
 
 - **The voice works over AirPods and other headphones.** It used to hear
