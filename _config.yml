@@ -27,6 +27,12 @@ defaults:
       path: "docs"
     values:
       layout: doc
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:title/
 
 exclude:
   - README.md

@@ -1,0 +1,16 @@
+---
+layout: post
+title: Blog
+---
+<section class="list">
+  <h1>How people use it</h1>
+  <ul>
+  {% for post in site.posts %}
+    <li><a href="{{ post.url | relative_url }}">
+      <span class="date">{{ post.date | date: "%-d %B %Y" }}</span>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.description }}</p>
+    </a></li>
+  {% endfor %}
+  </ul>
+</section>

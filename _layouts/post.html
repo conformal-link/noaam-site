@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title | strip_html }} · Noaam</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#141210; --panel:#1a1815; --ink:#eeebe3; --muted:#a8a49b; --faint:#6f6b63; --line:#2a2722; --accent:#ff7a59; --w:1120px; --mono:"Geist Mono", monospace; }
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; background: var(--bg); color: var(--muted); font: 17px/1.75 Geist, system-ui, sans-serif; letter-spacing: -0.005em; }
+a { color: inherit; }
+img, video { display: block; max-width: 100%; height: auto; }
+.wrap { max-width: var(--w); margin: 0 auto; padding: 0 16px 96px; }
+nav.top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand img { width: 26px; height: 26px; }
+.brand span, .links, .meta, footer, .list .date { font-family: var(--mono); }
+.brand span { font-weight: 500; font-size: 14px; }
+.links { display: flex; gap: 22px; align-items: center; font-size: 13px; }
+.links a { text-decoration: none; color: var(--muted); }
+.links a:hover, .links a[aria-current] { color: var(--ink); }
+.links .pill { color: var(--ink); border: 1px solid var(--line); padding: 6px 14px; border-radius: 6px; }
+
+.post { max-width: 700px; margin: 0 auto; padding-top: 56px; }
+.meta { font-size: 13px; color: var(--faint); margin: 0 0 14px; }
+.meta a { text-decoration: none; }
+.meta a:hover { color: var(--ink); }
+.post h1 { color: var(--ink); font-weight: 500; font-size: 42px; line-height: 1.08; letter-spacing: -0.04em; margin: 0 0 18px; }
+.post .lede { font-size: 19px; color: var(--ink); opacity: .85; margin: 0 0 40px; }
+.post h2 { color: var(--ink); font-weight: 500; font-size: 24px; letter-spacing: -0.03em; margin: 52px 0 12px; }
+.post p, .post ul, .post ol { margin: 0 0 18px; }
+.post ul, .post ol { padding-left: 22px; }
+.post li { margin: 6px 0; }
+.post strong, .post em { color: var(--ink); }
+.post strong { font-weight: 500; }
+.post a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.post a:hover { color: var(--accent); }
+.post code { font-family: var(--mono); font-size: .84em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--ink); }
+.post pre { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; overflow-x: auto; margin: 0 0 22px; line-height: 1.55; }
+.post pre code { background: none; border: 0; padding: 0; font-size: 13px; }
+.post blockquote { margin: 0 0 22px; padding: 2px 0 2px 18px; border-left: 2px solid var(--accent); }
+.post kbd { font-family: var(--mono); font-size: .85em; color: var(--ink); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; }
+.post figure { margin: 36px 0; width: min(1088px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+.post figure a { display: block; }
+.post figure img { cursor: zoom-in; }
+.post figcaption { max-width: 700px; margin-left: auto; margin-right: auto; }
+.post figure img, .post figure video { border: 1px solid var(--line); border-radius: 10px; }
+.post figcaption { font-size: 14px; color: var(--faint); margin-top: 10px; }
+.post table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 22px; }
+.post th { text-align: left; font-weight: 400; font-family: var(--mono); font-size: 12px; color: var(--faint); padding: 8px 14px 8px 0; border-bottom: 1px solid var(--line); }
+.post td { padding: 8px 14px 8px 0; border-bottom: 1px solid var(--line); }
+.post .end { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 15px; }
+
+.list { max-width: 700px; margin: 0 auto; padding-top: 56px; }
+.list h1 { color: var(--ink); font-weight: 500; font-size: 42px; letter-spacing: -0.04em; margin: 0 0 14px; }
+.list .intro { margin: 0 0 40px; }
+.list ul { list-style: none; padding: 0; margin: 0; }
+.list li { border-top: 1px solid var(--line); padding: 26px 0; }
+.list li a { text-decoration: none; }
+.list h2 { color: var(--ink); font-weight: 500; font-size: 24px; letter-spacing: -0.03em; margin: 4px 0 8px; }
+.list li a:hover h2 { color: var(--accent); }
+.list p { margin: 0; }
+.list .date { font-size: 13px; color: var(--faint); }
+
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--faint); font-family: var(--mono); }
+@media (max-width: 700px) { .post h1, .list h1 { font-size: 32px; } .post, .list { padding-top: 32px; } }
+@media (max-width: 600px) { .links a:not(.pill):not([aria-current]) { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top">
+  <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/icon-256.png' | relative_url }}" alt=""><span>Noaam</span></a>
+  <div class="links">
+    <a href="{{ '/docs/' | relative_url }}">Guide</a>
+    <a href="{{ '/blog/' | relative_url }}" aria-current="page">Blog</a>
+    <a href="https://github.com/sponsors/conformal-link">Sponsor</a>
+    <a class="pill" href="/download">Download</a>
+  </div>
+</nav>
+{% if page.layout == "post" and page.date %}
+<article class="post">
+  <p class="meta"><a href="{{ '/blog/' | relative_url }}">Blog</a> · {{ page.date | date: "%-d %B %Y" }}</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.lede %}<p class="lede">{{ page.lede }}</p>{% endif %}
+{{ content }}
+</article>
+{% else %}
+{{ content }}
+{% endif %}
+<footer><span>Noaam · made by Conformal Link</span><span><a href="https://github.com/conformal-link/noaam-site/discussions">Feedback and bugs</a></span></footer>
+</div>
+</body>
+</html>
