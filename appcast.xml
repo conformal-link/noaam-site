@@ -3,6 +3,14 @@
   <channel>
     <title>Noaam</title>
     <item>
+      <title>Noaam 0.0.16</title>
+      <pubDate>Sat, 14 Nov 2026 09:36:05 -0000</pubDate>
+      <sparkle:version>66</sparkle:version>
+      <sparkle:shortVersionString>0.0.16</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <enclosure url="https://github.com/conformal-link/noaam-site/releases/download/v0.0.16/Noaam.dmg" length="25437670" type="application/octet-stream" sparkle:edSignature="OQ/Rq4gA2kh4HTq8TYH9dClg/u3rnt8W3H9HC7I7zlRahtX6LBXRW3tJgoH+ezffhgi5/TbBoH61j8NzVwOBCQ==" />
+    </item>
+    <item>
       <title>Noaam 0.0.15</title>
       <pubDate>Fri, 06 Nov 2026 11:46:43 -0000</pubDate>
       <sparkle:version>65</sparkle:version>

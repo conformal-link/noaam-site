@@ -2,6 +2,19 @@
 
 What changed in each release of Noaam, newest first.
 
+## 0.0.16 — 2026-11-14 {#v0.0.16}
+
+- **Settling a tile closes up its Space.** Settle a tile (its Settle
+  button, or ⌃⌘⇧D) and, when only one tile is left, the Space ends its
+  tiling the way the tile's × does: a Space made by dropping one Item beside
+  another, or by **New Beside This**, goes away, and a named one goes back to
+  a list. So a terminal opened beside a session for a quick check goes with
+  one click, and the session is back on its own. The settled terminal is
+  hidden, not deleted: show settled entries (⌃⌘⇧H) to bring it back.
+- **The Browser tool shows Safari's icon**, not your default browser's.
+  Pages still open in your default browser. A Browser tool already set up
+  switches over unless you picked its icon yourself.
+
 ## 0.0.15 — 2026-11-06 {#v0.0.15}
 
 - **The voice no longer goes silent or crackles at the start over
